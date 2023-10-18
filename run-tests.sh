@@ -21,6 +21,7 @@ function cleanup() {
 # Check for arguments
 # Note: "-k" would clash with "pytest"
 keep_services=0
+pytest_only=0
 pytest_args=()
 for arg in $@; do
   # from the CLI args, filter out some known values and forward the rest to "pytest"
@@ -29,6 +30,9 @@ for arg in $@; do
   case ${arg} in
     -K|--keep-services)
       keep_services=1
+      ;;
+    -O|--pytest-only)
+      pytest_only=1
       ;;
     *)
       pytest_args+=( ${arg} )
@@ -40,10 +44,12 @@ if [[ ${keep_services} -eq 0 ]]; then
   trap cleanup EXIT
 fi
 
+if [[ ${pytest_only} -eq 0 ]]
+then
+  ruff .
 
-ruff .
-
-python -m check_manifest
-python -m sphinx.cmd.build -qnNW docs docs/_build/html
+  python -m check_manifest
+  python -m sphinx.cmd.build -qnNW docs docs/_build/html
+fi
 eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${SEARCH:-opensearch} --env)"
 python -m pytest ${pytest_args[@]+"${pytest_args[@]}"}
