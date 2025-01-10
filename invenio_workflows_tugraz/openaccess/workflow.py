@@ -65,6 +65,8 @@ def import_func(
     except KeyError as error:
         raise RuntimeError(str(error)) from error
 
+    publisher = pure_service.get_publisher_name(identity, pure_id)
+
     data = marc21_record.json
     data["access"] = {
         "record": "public",
