@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version v0.12.1 (released 2026-05-20)
+
+- fix(theses): redirect from theses url
+
 Version v0.12.0 (released 2026-02-10)
 
 - chore(black): update formatting to >= 26.0
