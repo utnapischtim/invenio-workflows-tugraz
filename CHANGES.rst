@@ -8,6 +8,19 @@
 Changes
 =======
 
+Version v0.13.0 (released 2026-07-02)
+
+- chore(theses): test duplicate pids feature
+- chore(typing): type tests_theses
+- fix(theses): wrong type
+- chore(linter): apply ruff rules
+- refactor(pids): move code from invenio-records-marc21
+- feat(migration): add pid for idempotent
+- feat(theses): add pids to duple check ac
+- feat(theses): use pids for duple check
+- chore(migration): refactor path handling
+- fix(migration): handle publication year
+
 Version v0.12.1 (released 2026-05-20)
 
 - fix(theses): redirect from theses url
